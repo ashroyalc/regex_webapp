@@ -8,16 +8,16 @@ def index():
     str_name =  request.form.get("str_name")
     reg_exp = request.form.get("regular_exp")
 
-    matches = []
     if reg_exp is None:
         return render_template("index.html")
     
     elif reg_exp is not None:
         match = re.findall(reg_exp,str_name)
-        print(match)
-        return render_template('index.html',message=match)
-    else:
-        return render_template('index.html',message="Match Not Found")
+        if match:
+            return render_template('index.html',message=match)
+        else:
+            return render_template('index.html',message=["Not Match Found"])
+    
 
 
 
@@ -37,4 +37,4 @@ def email_validation():
 
 ################################################################
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0",port="5000")
