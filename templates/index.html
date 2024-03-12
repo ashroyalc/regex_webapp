@@ -7,18 +7,24 @@
 </head>
 <body>
     <form action="/" method="post">
-        <input type="text" placeholder="Insert your regular expression here" name="regular_exp">
+        <label> Regular Expression </label><br>
+        <input type="text" placeholder="Insert your regular expression here" name="regular_exp" required>
         <br>
         <br>
         <label>Test String</label>
         <br>
-        <!-- <input type="text" placeholder="Enter your string here" name="str_name", size=100> -->
-        <textarea name="str_name" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+        <textarea name="str_name" rows="4" cols="50" placeholder="Enter your text here" required></textarea>
         <button type="submit">Submit</button><br>
         <br>
-       {% if message %}
-            {{ message }}
-        {% endif %}
+        <ul> 
+            {% for m in message %} 
+                {% if m %}
+                    <li>{{ m }}</li>
+                {% else %}
+                    <li>"No match Found"</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
        
     </form>
     <br>
